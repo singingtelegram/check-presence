@@ -18,8 +18,11 @@ def check_github(u):
 
 def check_reddit(u):
     url = "https://www.reddit.com/user/"
+    headers = {
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36"
+    }
     try:
-        resp = requests.get(url + u)
+        resp = requests.get(url + u, headers=headers)
         if resp.status_code == 200 or resp.status_code // 100 == 3:
             print(u, " is on reddit!", sep="")
         elif resp.status_code == 404:
